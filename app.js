@@ -30,3 +30,15 @@ app.controller("MainCtrl", ["$scope", function($scope){
 	};
 
 }]);
+
+app.factory("posts", [function(){
+	/*
+	creating a new object that has an array property called 'posts'.
+	We then return that variable so that our o object essentially becomes exposed
+	to any other Angular module that cares to inject it
+	*/
+	var obj = {
+		posts: []
+	};
+	return obj;
+}]);

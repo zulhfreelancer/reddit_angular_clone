@@ -1,4 +1,4 @@
-var app = angular.module("reddit", []);
+var app = angular.module("reddit", ['ui.router']);
 
 app.controller("MainCtrl", ["$scope", "postsFactory", function($scope, postsFactory){
 

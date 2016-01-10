@@ -1,30 +1,50 @@
 <html>
 <head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		.glyphicon-thumbs-up {
+			cursor:pointer
+		}
+	</style>
 	<title>Reddit Angular + Rails Clone</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="app.js"></script>
 </head>
 <body ng-app="reddit" ng-controller="MainCtrl">
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="page-header">
+					<h2>Reddit Clone</h2>
+				</div>
 
-	<!-- upvotes in desc order -->
-	<div ng-repeat="post in posts | orderBy: '-upvotes'">
-		<span ng-click="incrementUpvotes(post)">^</span>
+				<!-- upvotes in desc order -->
+				<div ng-repeat="post in posts | orderBy: '-upvotes'">
+					
+					<span style="font-size:20px; margin-left:10px;">
+						<!-- if post has link, show title wrapped with a link
+						if post doesn't has link, only show the title without link -->
+						<a ng-href="{{post.link}}" ng-show="post.link">{{post.title}}</a>
+						<span ng-show="!post.link">{{post.title}}</span>
+					</span>
+					&nbsp;
+					<span ng-click="incrementUpvotes(post)" class="glyphicon glyphicon-thumbs-up">{{post.upvotes}}</span>
 
-		<!-- if post has link, show title wrapped with a link
-		if post doesn't has link, only show the title without link -->
-		<a ng-href="{{post.link}}" ng-show="post.link">{{post.title}}</a>
-		<span ng-show="!post.link">{{post.title}}</span>
-		
-		- upvotes: {{post.upvotes}}
+				</div>
+
+				<form ng-submit="addPost()" style="margin-top:30px;">
+					<div class="form-group">
+						<input type="text" ng-model="title" placeholder="Title" class="form-control" />
+					</div>
+					<div class="form-group">
+						<input type="text" placeholder="Link" ng-model="link" class="form-control" />
+					</div>
+					<button type="submit" class="btn btn-primary">Add Post</button>
+				</form>
+			</div>
+		</div> <!-- /row -->
 	</div>
-
-	<form ng-submit="addPost()">
-		<input type="text" ng-model="title" placeholder="Title" />
-		<br>
-		<input type="text" placeholder="Link" ng-model="link" />
-		<br>
-		<button type="submit">Add Post</button>
-	</form>
 
 </body>
 </html>

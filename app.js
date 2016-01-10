@@ -1,5 +1,18 @@
 var app = angular.module("reddit", ['ui.router']);
 
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+
+	$stateProvider
+		.state('home', {
+			url: '/home',
+			templateUrl: '/home.html',
+			controller: 'MainCtrl'
+		});
+
+	$urlRouterProvider.otherwise('home');
+
+}]);
+
 app.controller("MainCtrl", ["$scope", "postsFactory", function($scope, postsFactory){
 
 	$scope.posts = postsFactory.posts;

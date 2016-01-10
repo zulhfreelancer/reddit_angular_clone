@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>Reddit Angular + Rails Clone</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="reddit" ng-controller="MainCtrl">
+
+	<!-- upvotes in desc order -->
+	<div ng-repeat="post in posts | orderBy: '-upvotes'">
+		{{post.title}} - {{post.upvotes}}
+	</div>
+
+</body>
+</html>

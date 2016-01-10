@@ -16,11 +16,13 @@ app.controller("MainCtrl", ["$scope", function($scope){
 
 		$scope.posts.push({
 			title: $scope.title,
+			link: $scope.link,
 			upvotes: 4
 		});
 
 		// clear the input
-		$scope.title = '';
+		$scope.title 	= '';
+		$scope.link 	= '';
 	};
 
 	$scope.incrementUpvotes = function(post){
